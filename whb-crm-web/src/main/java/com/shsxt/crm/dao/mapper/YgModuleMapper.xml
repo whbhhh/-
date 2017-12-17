@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.crm.dao.YgModuleDao">
+
+    <sql id="whereClause">
+        where 1 = 1
+        <if test="id != null">
+            and id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="moduleName != null">
+            and z.module_name = #{moduleName,jdbcType=VARCHAR}
+        </if>
+        <if test="parentModuleName != null">
+            and f.module_name = #{parentModuleName,jdbcType=VARCHAR}
+        </if>
+        <if test="url != null">
+            and url = #{url,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id = #{parentId,jdbcType=INTEGER}
+        </if>
+        <if test="parentOptValue != null">
+            and parent_opt_value = #{parentOptValue,jdbcType=VARCHAR}
+        </if>
+        <if test="grade != null">
+            and grade = #{grade,jdbcType=INTEGER}
+        </if>
+        <if test="optValue != null">
+            and z.opt_value = #{optValue,jdbcType=VARCHAR}
+        </if>
+        <if test="orders != null">
+            and orders = #{orders,jdbcType=INTEGER}
+        </if>
+        <if test="isValid != null">
+            and z.is_valid = #{isValid,jdbcType=TINYINT}
+        </if>
+        <if test="createDate != null">
+            and create_date = #{createDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateDate != null">
+            and update_date = #{updateDate,jdbcType=TIMESTAMP}
+        </if>
+    </sql>
+    <select id="querySystemMenu" resultType="com.shsxt.crm.model.YgSystemMenuModel">
+    SELECT
+    m.id,
+    m.module_name 'name',
+    IFNULL(m.parent_id, 0) 'pId',
+    m.opt_value 'optValue'
+    FROM
+    t_module m
+    WHERE
+    m.is_valid = 1;
+  </select>
+    <select id="findAll" resultType="ygModule">
+          SELECT
+          z.parent_id 'parentId', z.url,
+          z.grade, z.module_style 'moduleStyle',
+          z.opt_value 'optValue',
+          z.module_name 'moduleName',
+          f.module_name 'parentModuleName',
+          z.create_date 'createDate',
+          z.update_date 'updateDate'
+      FROM
+          t_module z
+      LEFT JOIN t_module f ON (z.parent_id = f.id)
+         <include refid="whereClause"/>
+  </select>
+    <select id="queryRoleAclValueByRid" resultType="String" parameterType="String">
+        SELECT acl_value FROM t_permission WHERE role_id = #{rid}
+    </select>
+    <select id="queryMenuModelByMid" parameterType="int"
+            resultType="com.shsxt.crm.model.YgSystemMenuModel">
+        SELECT id, opt_value 'optValue' from
+        t_module WHERE id = ${mid } and is_valid = 1
+    </select>
+</mapper>

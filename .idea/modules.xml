@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/web-crm-common/web-crm-common.iml" filepath="$PROJECT_DIR$/web-crm-common/web-crm-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whb-crm-configuration/whb-crm-configuration.iml" filepath="$PROJECT_DIR$/whb-crm-configuration/whb-crm-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whb-crm-sys/whb-crm-sys.iml" filepath="$PROJECT_DIR$/whb-crm-sys/whb-crm-sys.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whb-crm-task/whb-crm-task.iml" filepath="$PROJECT_DIR$/whb-crm-task/whb-crm-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whb-crm-web/whb-crm-web.iml" filepath="$PROJECT_DIR$/whb-crm-web/whb-crm-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whbcrm.iml" filepath="$PROJECT_DIR$/whbcrm.iml" />
+    </modules>
+  </component>
+</project>

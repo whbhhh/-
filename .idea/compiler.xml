@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="web-crm-common" />
+        <module name="whb-crm-configuration" />
+        <module name="whb-crm-sys" />
+        <module name="whb-crm-task" />
+        <module name="whb-crm-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="web-crm-common" target="1.8" />
+      <module name="whb-crm-configuration" target="1.8" />
+      <module name="whb-crm-sys" target="1.8" />
+      <module name="whb-crm-task" target="1.8" />
+      <module name="whb-crm-web" target="1.8" />
+      <module name="whbcrm" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

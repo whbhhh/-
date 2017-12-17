@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.crm.dao.YgReportDao" >
+    <resultMap id="BaseResultMap" type="com.shsxt.crm.model.YgReport" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="INTEGER" />
+        <result column="totals" property="totals" jdbcType="VARCHAR" />
+        <result column="level" property="level" />
+        <result column="count" property="count" />
+        <result column="serve_type" property="type" />
+    </resultMap>
+    <select id="queryCustomersContribution" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        c. NAME,
+        SUM(IFNULL(d.sum, 0)) 'totals'
+        FROM
+        t_customer c
+        LEFT JOIN
+        t_customer_order o ON (c.id = o.cus_id)
+        LEFT JOIN
+        t_order_details d ON
+        (o.id = d.order_id)
+        <where>
+            c.is_valid = 1
+            <if test="name != null and name != ''">
+                and c.name = #{name}
+            </if>
+        </where>
+        GROUP BY
+        NAME DESC
+    </select>
+
+    <select id="queryCustomersGc" resultMap="BaseResultMap">
+        select  level  , COUNT(1) 'count'  FROM t_customer   GROUP BY  level
+    </select>
+
+    <select id="queryCustomersServerAnalysis" resultType="ygCustomerServer">
+              SELECT
+		s.serve_type 'name',
+		COUNT(1) 'value'
+		FROM
+		t_customer_serve s
+		WHERE
+		s.is_valid = 1
+		GROUP BY
+		s.serve_type
+    </select>
+</mapper>

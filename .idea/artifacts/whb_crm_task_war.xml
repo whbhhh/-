@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="whb-crm-task:war">
+    <output-path>$PROJECT_DIR$/whb-crm-task/target</output-path>
+    <root id="archive" name="whb-crm-task.war">
+      <element id="artifact" artifact-name="whb-crm-task:war exploded" />
+    </root>
+  </artifact>
+</component>
